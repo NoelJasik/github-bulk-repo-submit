@@ -1,0 +1,21 @@
+{
+  "name": "githubbulksubmit",
+  "version": "1.0.0",
+  "description": "This tool was created, so i can push all of the unity projects sitting on my harddrive to github, quickly, this is based on the output from ChatGPT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
