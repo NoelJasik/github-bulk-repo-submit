@@ -3,7 +3,7 @@
 so yeah, i needed to bulk upload my past projects to github, and well just asked AI for code to do that, tbf this took me about 1 hour to get to work i think i could do it better and faster working alone, there
 are limitations to this AI, and the code isn't that pretty, but hey, AI wrote this
 
-my input was basically testing if this work, and if it doesn't specifying the issue to chatGPT and asking to fix it, and reapeat till it works
+my input was basically testing if this work, and if it doesn't specifying the issue to chatGPT and asking to fix it, and reapeat till it works, also requesting features like usage of the .env file
 
 ## Description belowe was written by chatGPT ai
 
