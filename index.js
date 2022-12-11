@@ -7,6 +7,7 @@ const username = process.env.GITHUB_USERNAME;
 const token = process.env.GITHUB_TOKEN;
 const baseUrl = 'https://api.github.com';
 const dir = 'D:/Projects/Ai';
+let cloneUrl;
 
 // Get all the subdirectories in the given directory
 fs.readdir(dir, (err, files) => {
@@ -71,7 +72,7 @@ fs.readdir(dir, (err, files) => {
                     console.log(`Successfully created repository: ${body.html_url}`);
 
                     // Set the clone URL for the repository
-                    const cloneUrl = body.clone_url;
+                    cloneUrl = body.clone_url;
 
                     // Set the local directory to push to the repository
                     const localDir = `${dir}/${repoName}`;
@@ -118,31 +119,36 @@ fs.readdir(dir, (err, files) => {
                     })
                 } else if (error == null) {
 
-                    exec(`git add .`, { cwd: localDir }, (err, stdout, stderr) => {
+                    exec(`git remote add origin ${cloneUrl}`, { cwd: localDir }, (err, stdout, stderr) => {
                         if (err) {
                             console.error(`Error pushing to repository: ${err}`);
-                            return;
                         }
 
-                        exec(`git commit -m "Initial commit"`, { cwd: localDir }, (err, stdout, stderr) => {
+                        exec(`git add .`, { cwd: localDir }, (err, stdout, stderr) => {
                             if (err) {
                                 console.error(`Error pushing to repository: ${err}`);
                                 return;
                             }
-                            exec(`git push -u origin master`, { cwd: localDir }, (err, stdout, stderr) => {
+
+                            exec(`git commit -m "Initial commit"`, { cwd: localDir }, (err, stdout, stderr) => {
                                 if (err) {
                                     console.error(`Error pushing to repository: ${err}`);
                                     return;
                                 }
+                                exec(`git push -u origin master`, { cwd: localDir }, (err, stdout, stderr) => {
+                                    if (err) {
+                                        console.error(`Error pushing to repository: ${err}`);
+                                        return;
+                                    }
 
-                                // The local directory was successfully pushed to the repository
-                                console.log('Successfully pushed local directory to repository.');
+                                    // The local directory was successfully pushed to the repository
+                                    console.log('Successfully updated local directory to repository.');
+                                });
                             });
                         });
-                    });
-
-                }
+                    })
+                    }
             })
         }
-     })
+    })
 });
