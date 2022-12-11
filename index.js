@@ -1,3 +1,5 @@
+//Minimal human input was used to make this
+
 const fs = require('fs');
 const { exec } = require('child_process');
 const request = require('request');
